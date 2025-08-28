@@ -1,0 +1,149 @@
+@charset "utf-8"; 
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #faefd7;
+    overflow-y: auto;
+    overflow-x: hidden; 
+    background: 
+        linear-gradient(#ecd7a6, rgba(238, 205, 126, 0.722)),
+        url('../static/assets/img/textura.jpg') center/cover no-repeat;
+}
+
+.game-container {
+    background-color: #dbab3b;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 600px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h1{
+    color: #564115;
+    margin-bottom: 15px;
+    font-size: clamp(1em, 5vw, 2em);
+}
+
+p {
+    color: #8f6815;
+}
+
+.score-board {
+    font-size: clamp(1em, 2vw, 0.8em);
+    color: #e8ce94;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.memory-game {
+    display: grid;
+    grid-template-columns: repeat(4, 0.5fr);
+    grid-template-rows: repeat(4, 0.5fr);
+    gap: clamp(5px, 0.5vw, 5px);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    perspective: 1000px;
+    margin: auto;
+    padding: 5px;
+}
+
+.memory-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform-origin: center center;
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+.memory-card.match {
+    cursor: default;
+    pointer-events: none;
+    filter: grayscale(100%)
+}
+
+.front-face,
+.back-face {
+    width: 100%;
+    height: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 8px;
+    backface-visibility: hidden;
+    object-fit: contain;
+    background-color: #ffffff;
+}
+
+.front-face {
+    transform: rotateY(180deg);
+}
+
+.back-face {
+    background-image: url(../assets/img/icon-memoria.png);
+    background-size: cover;
+    background-position: center;
+}
+
+#restart-button {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: clamp(1em, 2vw, 1em);
+    background-color: #1c8455;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+}
+
+#restart-button:hover {
+    background-color: #fff9ec;
+    transform: translateY(-2px);
+}
+
+.resultado {
+    margin-top: 3px;
+    width: 100%;
+    background-color: #3040b65d;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+    border-radius: 30px;
+}
+
+@media (min-width: 768px) {
+    body {
+        justify-content: center;
+    }
+    .game-container {
+        padding: 30px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}
