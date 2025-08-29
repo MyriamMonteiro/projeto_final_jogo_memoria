@@ -21,6 +21,7 @@ const cardImages = [
     '../static/assets/img/batata-doce1.0.png',
 ];
 
+/* função - inicia o jogo */
 function initializeGame() {
     cardsArray = [];
     matchesFound = 0;
@@ -58,6 +59,7 @@ function initializeGame() {
     });
 }
 
+/* embaralha as cartas e deixa em ordem aleatória */
 function shuffleCards(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -83,6 +85,7 @@ function flipCard() {
     checkForMatch();
 }
 
+/* Verica se as cartas são iguais */
 function checkForMatch() {
     let isMatch = firstCard.dataset.id === secondCard.dataset.id;
 
@@ -93,6 +96,7 @@ function checkForMatch() {
     }
 }
 
+/* desabilita as cartas que viraram par */
 function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
@@ -106,7 +110,7 @@ function disableCards() {
         setTimeout(() => {
             alert(`Parabéns! Você encontrou todos os pares em ${moves} movimentos!`);
 
-            // Envio automático para o Flask
+            /*quando termina o jogo. Js envia para o python - flask */
             fetch("/historico_resultado", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -114,8 +118,8 @@ function disableCards() {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data.mensagem); // depuração
-                document.getElementById("ultimo-resultado").textContent = moves; // atualiza a barra
+                console.log(data.mensagem);
+                document.getElementById("ultimo-resultado").textContent = moves;
             });
 
         }, 500);
@@ -124,6 +128,7 @@ function disableCards() {
     resetBoard();
 }
 
+/* Se as cartas são diferentes, voltam para a posição */
 function unflipCards() {
     lockBoard = true;
     setTimeout(() => {
