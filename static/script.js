@@ -1,3 +1,4 @@
+//estrutura do jogo, escolha de quantos pares e imagens
 const memoryGame = document.getElementById('memory-game');
 const movesCountElement = document.getElementById('moves-count');
 const restartButton = document.getElementById('restart-button');
