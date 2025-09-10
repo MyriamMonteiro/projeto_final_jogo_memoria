@@ -30,6 +30,7 @@ function initializeGame() {
     movesCountElement.textContent = moves;
     memoryGame.innerHTML = '';
 
+    //cria cartas garantindo que haja par    
     for (let i = 0; i < numPairs; i++) {
         cardsArray.push({ id: i, image: cardImages[i] });
         cardsArray.push({ id: i, image: cardImages[i] });
@@ -67,7 +68,7 @@ function shuffleCards(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-
+// efeito de virar (flip) as cartas
 function flipCard() {
     if (lockBoard) return;
     if (this === firstCard) return;
